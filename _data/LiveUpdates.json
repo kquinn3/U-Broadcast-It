@@ -1,0 +1,52 @@
+[
+  {
+    "user": "5de527673574e100d52756c5",
+    "broadcast": "5de528203574e100d52756c6",
+    "updateType": "action",
+    "gameUpdate": "The game is underway"
+  },
+  {
+    "user": "5de527673574e100d52756c5",
+    "broadcast": "5de528203574e100d52756c6",
+    "updateType": "both",
+    "gameUpdate": "The road team scored",
+    "scoreboard": {
+      "team1": 1,
+      "team2": 0,
+      "period": 1,
+      "time": { "minutes": 18, "seconds": 23 }
+    }
+  },
+  {
+    "user": "5de527673574e100d52756c5",
+    "broadcast": "5de528203574e100d52756c6",
+    "updateType": "both",
+    "gameUpdate": "The home team scored",
+    "scoreboard": { "team1": 1, "team2": 1 }
+  },
+  {
+    "user": "5de527673574e100d52756c5",
+    "broadcast": "5de528203574e100d52756c6",
+    "updateType": "score",
+    "gameUpdate": "Team1 scored",
+    "scoreboard": { "team1": 2, "team2": 1 }
+  },
+  {
+    "user": "5de527673574e100d52756c5",
+    "broadcast": "5de528203574e100d52756c6",
+    "updateType": "action",
+    "gameUpdate": "This is an exciting game"
+  },
+  {
+    "user": "5de527673574e100d52756c5",
+    "broadcast": "5de528203574e100d52756c6",
+    "updateType": "both",
+    "gameUpdate": "Another goal",
+    "scoreboard": {
+      "team1": 2,
+      "team2": 2,
+      "period": 1,
+      "time": { "minutes": 3, "seconds": 14 }
+    }
+  }
+]

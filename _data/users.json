@@ -1,0 +1,36 @@
+[
+  {
+    "_id": "5db98e5937c9ea00833bcfc3",
+    "name": "Broadcaster 1 Account",
+    "email": "broadcaster1@gmail.com",
+    "role": "broadcaster",
+    "password": "123456"
+  },
+  {
+    "_id": "5db98e5937c9ea00833bcfc4",
+    "name": "Broadcaster 2 Account",
+    "email": "broadcaster2@gmail.com",
+    "role": "broadcaster",
+    "password": "123456"
+  },
+  {
+    "_id": "5db98e5937c9ea00833bcfc5",
+    "name": "User 1 Account",
+    "email": "user1@gmail.com",
+    "role": "user",
+    "password": "123456"
+  },
+  {
+    "_id": "5db98e5937c9ea00833bcfc6",
+    "name": "User 2 Account",
+    "email": "user2@gmail.com",
+    "role": "user",
+    "password": "123456"
+  },
+  {
+    "name": "Admin Account",
+    "email": "admin@gmail.com",
+    "role": "user",
+    "password": "123456"
+  }
+]
