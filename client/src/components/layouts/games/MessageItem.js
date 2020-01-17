@@ -18,7 +18,7 @@ const MessageItem = ({ message, id }) => {
       <tr key={id} className="f-xs">
         <td>{convertDate(message.createdAt)}</td>
         {/* <td>{message.user.name.substring(0, 12)}</td> */}
-        <td>To be fixed</td>
+        <td>{message.user.name}</td>
         <td className="text-left">{message.gameMessage}</td>
       </tr>
     </Fragment>
