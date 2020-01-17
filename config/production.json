@@ -1,7 +1,7 @@
 {
   "NODE_ENV": "development",
   "MONGO_URI": "mongodb+srv://kevin:PATSsb36@cluster0-okjai.mongodb.net/ubroadcaster?retryWrites=true&w=majority",
-  "jwtSecret": "ihaveasecretandiamnottellingwhatitis",
+  "JWT_SECRET": "ihaveasecretandiamnottellingwhatitis",
   "JWT_EXPIRE": "30d",
   "JWT_COOKIE_EXPIRE": 30,
   "GEOCODER_PROVIDER": "mapquest",
