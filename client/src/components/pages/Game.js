@@ -40,7 +40,8 @@ const Game = ({
   const initGame = async id => {
     await loadGame(id, user);
     if (socket === null) {
-      socket = io.connect("http://localhost:5000/");
+      // socket = io.connect("http://localhost:5000/");
+      socket = io.connect("/");
       openSocketGame(socket);
     }
     socket.emit("join_game", { id });

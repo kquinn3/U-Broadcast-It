@@ -2,16 +2,16 @@ const express = require("express");
 const session = require("express-session");
 const socket = require("socket.io");
 const cors = require("cors");
-const dotenv = require("dotenv");
+//const dotenv = require("dotenv");
 const morgan = require("morgan");
 const colors = require("colors");
-const path = rquire("path");
+const path = require("path");
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
 
 //Load env vars
-dotenv.config({ path: "./config/config.env" });
+//dotenv.config({ path: "./config/config.env" });
 
 //Connect to database
 connectDB();

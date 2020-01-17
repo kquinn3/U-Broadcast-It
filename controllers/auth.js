@@ -3,6 +3,7 @@ const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const sendEmail = require("../utils/sendEmail");
 const User = require("../models/User");
+const config = require("config");
 
 // @desc    Register user
 // @route   POST /api/v1/auth/register
@@ -157,11 +158,11 @@ const sendTokenResponse = (user, statusCode, res) => {
 
   const options = {
     expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+      Date.now() + config.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
     ),
     httpOnly: true
   };
-  if (process.env.NODE_ENV === "production") {
+  if (config.NODE_ENV === "production") {
     options.secure = true;
   }
   res
