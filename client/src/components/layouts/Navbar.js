@@ -28,6 +28,11 @@ const Navbar = ({ user: { user, isAuthenticated }, logout }) => {
 
   const authLinks = (
     <Fragment>
+      <li className="nav-item">
+        <Link className="nav-link" to="/schedulegame">
+          Schedule
+        </Link>
+      </li>
       <li>
         <a className="nav-link" onClick={onLogout} href="/">
           <i className="fas fa-sign-out-alt"></i>{" "}
@@ -42,6 +47,11 @@ const Navbar = ({ user: { user, isAuthenticated }, logout }) => {
       <li className="nav-item">
         <Link className="nav-link" to="/about">
           About
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/broadcast">
+          Broadcasts
         </Link>
       </li>
       <li className="nav-item">
@@ -79,11 +89,7 @@ const Navbar = ({ user: { user, isAuthenticated }, logout }) => {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/broadcast">
-                  Broadcasts
-                </Link>
-              </li>
+
               {isAuthenticated ? authLinks : guestLinks}
             </ul>
           </div>
