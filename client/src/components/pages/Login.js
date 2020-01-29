@@ -71,15 +71,15 @@ const Login = ({
           <div className="col-md-6 m-auto">
             <div className="card bg-white p-4 mb-4">
               <div className="card-body">
-                <h1>
-                  <i className="fas fa-sign-in-alt"></i> Login
+                <h1 className="text-center mb-3">
+                  <i className="fas fa-sign-in-alt icon"></i> Login
                 </h1>
                 <p>Log in to create broadcasts, game updates and messages</p>
                 <form onSubmit={onSubmit}>
-                  <div className="form-group">
-                    <label htmlFor="email">Email Address</label>
+                  <div className="input-container mt-2">
+                    <i className="fa fa-envelope icon"></i>{" "}
                     <input
-                      className="form-control"
+                      className="input-field"
                       type="email"
                       name="email"
                       value={email}
@@ -88,10 +88,10 @@ const Login = ({
                       onChange={onChange}
                     />
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Password</label>
+                  <div className="input-container">
+                    <i className="fa fa-key icon"></i>{" "}
                     <input
-                      className="form-control"
+                      className="input-field"
                       type="password"
                       name="password"
                       value={password}

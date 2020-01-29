@@ -19,18 +19,20 @@ const Updates = ({
       .classList.remove("period-button");
     document.getElementById(`${e.target.id}`).classList.add("period-button");
     switch (e.target.id) {
-      case "period1": {
+      case "period1":
         setPeriodSel(1);
         break;
-      }
-      case "period2": {
+
+      case "period2":
         setPeriodSel(2);
         break;
-      }
-      case "period3": {
+
+      case "period3":
         setPeriodSel(3);
         break;
-      }
+
+      default:
+        setPeriodSel(1);
     }
   };
 

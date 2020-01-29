@@ -92,6 +92,15 @@ exports.deleteBroadcast = asyncHandler(async (req, res, next) => {
 // @route   GET /api/v1/broadcasts/:radius/:distance
 // @access  Private
 exports.getBroadcastsInRadius = asyncHandler(async (req, res, next) => {
+  let team = {};
+  let sport = {};
+  //Set up sport and team filters
+  if (req.query.sport !== "all") sport.sport = req.query.sport;
+  if (req.query.team !== undefined && req.query.team !== "")
+    team = {
+      $or: [{ "name.team1": req.query.team }, { "name.team2": req.query.team }]
+    };
+
   const { zipcode, distance } = req.params;
 
   //Get lat/lng from geocoder
@@ -102,10 +111,14 @@ exports.getBroadcastsInRadius = asyncHandler(async (req, res, next) => {
   //Calc radius using radians
   //Divide distance by radius of Earth
   //Earth Radius=3,963 miles / 6378 km
-  const radius = distance / 3963;
-  const broadcasts = await Broadcast.find({
-    location: { $geoWithin: { $centerSphere: [[lng, lat], radius] } }
-  });
+  const location = {
+    location: { $geoWithin: { $centerSphere: [[lng, lat], distance] } }
+  };
+
+  const query = Object.assign({}, location, sport, team);
+  console.log("query", query);
+  const broadcasts = await Broadcast.find(query);
+
   res.status(200).json({
     success: true,
     count: broadcasts.length,

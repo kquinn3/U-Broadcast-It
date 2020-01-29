@@ -1,5 +1,6 @@
 const advancedResults = (model, populate) => async (req, res, next) => {
   let query;
+
   // Copy req.query
   let reqQuery = { ...req.query };
 

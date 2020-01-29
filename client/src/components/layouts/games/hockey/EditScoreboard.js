@@ -45,6 +45,7 @@ const EditScoreboard = ({
       newSeconds: game.score.hockey.time.seconds,
       txtUpdate: ""
     });
+    // eslint-disable-next-line
   }, [game.score.hockey]);
 
   // ********************************************************************
@@ -169,6 +170,9 @@ const EditScoreboard = ({
         });
         break;
       }
+      default:
+        console.log("Need to fix this");
+        break;
     }
   };
 

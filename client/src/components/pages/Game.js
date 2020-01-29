@@ -18,7 +18,7 @@ const Game = ({
   match: {
     params: { id }
   },
-  game: { sport, socket, gameId },
+  game: { sport, socket },
   user: { user },
   loadGame,
   clearGame,
@@ -31,10 +31,15 @@ const Game = ({
   //Use effect calls initGame when the page is loaded. InitGame also opens the socket for the game and connects the game
   useEffect(() => {
     initGame(id);
+    // eslint-disable-next-line
   }, []);
 
   //Use effect calls clearGame when the page is unloaded. The socket should be automatically closed. Need to check
-  useEffect(() => () => unloadGame(), []);
+  useEffect(
+    () => () => unloadGame(),
+    // eslint-disable-next-line
+    []
+  );
 
   //User enters the page
   const initGame = async id => {
@@ -51,7 +56,7 @@ const Game = ({
   };
 
   const handleGameUpdate = message => {
-    const { gameId, sport, user, code, scoreboard } = message;
+    const { sport, user, code, scoreboard } = message;
     switch (code) {
       case "activate":
         activateGameUser(); //Only needed if user entered before the broadcaster
@@ -71,7 +76,8 @@ const Game = ({
         };
         messageGame(msgMessage);
         return;
-      case "default":
+      default:
+        console.log("Something is not right");
         return;
     }
   };

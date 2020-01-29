@@ -84,23 +84,23 @@ const ScheduleGame = ({
           <div className="col-md-6 m-auto">
             <div className="card bg-white p-4 mb-4">
               <div className="card-body">
-                <h1>
+                <h1 className="text-center mb-3">
+                  <i className="fas fa-calendar-alt"></i>
                   Schedule a Game
-                  {/* <i className="fas fa-user-plus"></i> Schedule a Broadcast */}
                 </h1>
                 <p>
                   Schedule a future game. Once done you will be provided a link
                   that you can email to fans interested in tracking the game
                 </p>
                 <form onSubmit={onSubmit}>
-                  <div className="form-group">
+                  <div className="form-group mt-4">
                     <label htmlFor="name">Address of Game</label>
                     <input
                       className="form-control"
                       type="text"
                       name="address"
                       value={address}
-                      placeholder="Enter Your Address(street,city,state,zip)"
+                      placeholder="Enter Address of game (street,city,state,zip)"
                       required
                       onChange={onChange}
                     />

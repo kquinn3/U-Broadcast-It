@@ -13,6 +13,7 @@ const initialState = {
   token: null,
   user: null,
   isAuthenticated: null,
+  isBroadcaster: null,
   loading: null,
   error: null
 };
@@ -23,6 +24,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: true,
+        isBroadcaster: action.payload.isBroadcaster,
         loading: false,
         user: action.payload,
         token: localStorage.getItem("token")
@@ -45,6 +47,7 @@ export default (state = initialState, action) => {
         ...state,
         token: null,
         isAuthenticated: false,
+        isBroadcaster: null,
         loading: false,
         user: null,
         error: action.payload

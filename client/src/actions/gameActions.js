@@ -56,7 +56,7 @@ export const loadGame = (id, user) => async dispatch => {
     let res2 = await axios.get(`/api/v1/liveupdates/${id}`);
     let updates = [];
     if (res2 !== null && res2.data.count > 0) {
-      res2.data.data.map(up => {
+      res2.data.data.forEach(up => {
         let update = {
           scoreboard: up.scoreboard,
           gameUpdate: up.scoreboard.gameUpdate,
@@ -89,15 +89,16 @@ export const loadGame = (id, user) => async dispatch => {
             });
         score.hockey = hockey;
         break;
+      default:
+        console.log("More games will be added");
     }
     game.score = score;
 
     //Get the messages from the liveMessages database
     let res3 = await axios.get(`/api/v1/livemessages/${id}`);
-    console.log("messages", res3);
     let messages = [];
     if (res3 !== null && res3.data.count > 0) {
-      res3.data.data.map(msg => {
+      res3.data.data.forEach(msg => {
         let message = {
           user: msg.user.name,
           gameMessage: msg.gameMessage,
@@ -130,7 +131,7 @@ export const activateGame = id => async dispatch => {
       }
     };
     const status = { status: "active" };
-    let res = await axios.put(`/api/v1/broadcasts/${id}`, status, config);
+    await axios.put(`/api/v1/broadcasts/${id}`, status, config);
 
     return dispatch({ type: ACTIVATE_GAME_SUCCESS });
   } catch (err) {
@@ -152,7 +153,7 @@ export const completeGame = id => async dispatch => {
       }
     };
     const status = { status: "completed" };
-    let res = await axios.put(`/api/v1/broadcasts/${id}`, status, config);
+    await axios.put(`/api/v1/broadcasts/${id}`, status, config);
 
     return dispatch({ type: COMPLETE_GAME_SUCCESS });
   } catch (err) {
@@ -193,6 +194,9 @@ export const scoreGame = (up, sport) => async dispatch => {
           }
         };
         score.hockey = hockey;
+        break;
+      default:
+        console.log("More sports will be added");
         break;
     }
     const pl = { score, update };
@@ -244,6 +248,33 @@ export const scheduleGame = bcastScheduleItem => async dispatch => {
       type: SCHEDULE_FAIL,
       payload: err.response.data.error
     });
+  }
+};
+
+export const getMyFilteredGames = filterParams => async dispatch => {
+  try {
+    console.log("filterParams", filterParams);
+    const rad = filterParams.miles;
+    const zip = filterParams.zipcode;
+    const sport = filterParams.sport;
+    const team = filterParams.team;
+
+    let getString = `/api/v1/broadcasts/radius/${zip}/${rad}?sport=${sport}`;
+    if (team !== "") getString += `&team=${team}`;
+    console.log("getString", getString);
+    const res = await axios.get(getString);
+    if (res.data.data.length > 0) {
+      res.data.data.forEach(item => {
+        let nDate = new Date(item.eventTime);
+        item.newDate = nDate.toString();
+        item.scoreboardUrl = `/game/${item._id}`;
+      });
+    }
+
+    return dispatch({ type: LOAD_GAMES_SUCCESS, payload: res.data.data });
+  } catch (err) {
+    console.log(err);
+    return dispatch({ type: LOAD_GAMES_FAIL });
   }
 };
 

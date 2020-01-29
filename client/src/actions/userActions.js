@@ -55,6 +55,7 @@ export const logUser = async (formData, dispatch) => {
   };
   try {
     const res = await axios.post("/api/v1/auth/login", formData, config);
+
     return dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
@@ -73,6 +74,9 @@ export const loadUser = async dispatch => {
   }
   try {
     const res = await axios.get("/api/v1/auth/me");
+    let isBroadcaster = false;
+    if (res.data.data.role === "broadcaster") isBroadcaster = true;
+    res.data.data.isBroadcaster = isBroadcaster;
     return dispatch({ type: USER_LOADED, payload: res.data.data });
   } catch (err) {
     return dispatch({ type: AUTH_ERROR });

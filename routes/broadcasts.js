@@ -15,6 +15,7 @@ const router = express.Router();
 const { protect, authorize } = require("../middleware/auth");
 
 router.route("/radius/:zipcode/:distance").get(getBroadcastsInRadius);
+//.get(advancedResults(Broadcast), getBroadcastsInRadius);
 
 router
   .route("/")

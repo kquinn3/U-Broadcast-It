@@ -73,15 +73,15 @@ const Register = ({
           <div className="col-md-6 m-auto">
             <div className="card bg-white p-4 mb-4">
               <div className="card-body">
-                <h1>
-                  <i className="fas fa-user-plus"></i> Register
+                <h1 className="text-center mb-3">
+                  <i className="fas fa-user-plus icon"></i> Register
                 </h1>
                 <p>Register to create game broadcasts and/or post messages</p>
                 <form onSubmit={onSubmit}>
-                  <div className="form-group">
-                    <label htmlFor="name">Name</label>
+                  <div className="input-container mt-2">
+                    <i className="fa fa-user icon"></i> {/* </label> */}
                     <input
-                      className="form-control"
+                      className="input-field"
                       type="text"
                       name="name"
                       value={name}
@@ -90,10 +90,10 @@ const Register = ({
                       onChange={onChange}
                     />
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email Address</label>
+                  <div className="input-container">
+                    <i className="fa fa-envelope icon"></i>{" "}
                     <input
-                      className="form-control"
+                      className="input-field"
                       type="email"
                       name="email"
                       value={email}
@@ -102,10 +102,10 @@ const Register = ({
                       onChange={onChange}
                     />
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="password">Enter password</label>
+                  <div className="input-container">
+                    <i className="fa fa-key icon"></i>{" "}
                     <input
-                      className="form-control"
+                      className="input-field"
                       type="password"
                       name="password"
                       value={password}
@@ -115,10 +115,10 @@ const Register = ({
                       minLength="6"
                     />
                   </div>
-                  <div className="form-group mb-4">
-                    <label htmlFor="name">Confirm password</label>
+                  <div className="input-container mb-4">
+                    <i className="fa fa-key icon"></i>{" "}
                     <input
-                      className="form-control"
+                      className="input-field"
                       type="password"
                       name="password2"
                       value={password2}
