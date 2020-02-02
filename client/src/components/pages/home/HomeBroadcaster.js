@@ -32,6 +32,7 @@ const HomeBroadcaster = ({
             <Profile />
             <div className="card card-body bg-light mb-4">
               <h1>Archived Games</h1>
+              <h2 className="text-danger text-center">To be added</h2>
             </div>
           </div>
           {/* Right Upcoming Games Column */}

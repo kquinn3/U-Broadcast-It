@@ -48,7 +48,14 @@ const Profile = ({ user: { user }, updateUserPreferences, loadUser }) => {
 
   const onDiscard = e => {
     e.preventDefault();
-    //zipFlag &&
+    setNewProfile({
+      newZip: "",
+      zipFlag: false,
+      newRad: "",
+      radFlag: false,
+      newFavTeam: [],
+      favTeamFlag: false
+    });
   };
 
   const onChange = e => {

@@ -52,6 +52,7 @@ const Login = ({
     // Uncomment for testing to speed it up
     // const userItem = {
     //   email: "broadcaster@gmail.com",
+    //   //email: "user@gmail.com",
     //   password: "111111"
     // };
 
