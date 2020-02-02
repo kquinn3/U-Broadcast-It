@@ -8,7 +8,7 @@ const BroadcastSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please add an eventType"],
       trim: true,
-      maxLength: [50, "eventType can not be more than 30 characters"]
+      maxLength: [30, "eventType can not be more than 30 characters"]
     },
     name: {
       team1: {

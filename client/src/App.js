@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Home from "./components/pages/Home";
+import Home from "./components/pages/home/Home";
 import About from "./components/pages/About";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
@@ -11,7 +11,6 @@ import Navbar from "./components/layouts/Navbar";
 import Alerts from "./components/layouts/Alerts";
 import Game from "./components/pages/Game";
 import Demo from "./components/pages/Demo";
-import Profile from "./components/pages/Profile";
 import Broadcast from "./components/pages/Broadcast";
 
 import { Provider } from "react-redux";
@@ -34,7 +33,6 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/schedulegame" component={ScheduleGame} />
           <Route exact path="/demo" component={Demo} />
-          <Route exact path="/profile" component={Profile} />
           <Route exact path="/game/:id" component={Game} />
           <Route exact path="/game/:id" component={Game} />
           <Route component={NotFound} />

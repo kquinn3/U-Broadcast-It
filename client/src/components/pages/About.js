@@ -114,7 +114,7 @@ const About = () => {
 
           <p className="my-1">Kevin Quinn</p>
           <div className="p">
-            <strong>Version:</strong> 1.0.0 released on 01/31/2010
+            <strong>Version:</strong> 1.0.0 released on 02/02/2020
           </div>
         </div>
       </div>

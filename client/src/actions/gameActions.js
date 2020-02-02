@@ -23,7 +23,13 @@ import {
   SCHEDULE_FAIL,
   SCHEDULE_CLEAR,
   LOAD_GAMES_SUCCESS,
-  LOAD_GAMES_FAIL
+  LOAD_GAMES_FAIL,
+  LOAD_MY_GAMES_SUCCESS,
+  LOAD_MY_GAMES_FAIL,
+  LOAD_FAVORITE_GAMES_SUCCESS,
+  LOAD_FAVORITE_GAMES_FAIL,
+  LOAD_DEFAULT_GAMES_SUCCESS,
+  LOAD_DEFAULT_GAMES_FAIL
 } from "./types";
 
 //////////////////////////////////////////////////////////////////////
@@ -278,22 +284,73 @@ export const getMyFilteredGames = filterParams => async dispatch => {
   }
 };
 
-export const getMyGames = () => async dispatch => {
+export const getMyGames = id => async dispatch => {
   try {
-    const res = await axios.get("/api/v1/broadcasts");
+    console.log("id", id);
+    const res = await axios.get(`/api/v1/broadcasts?user=${id}`);
     if (res.data.data.length > 0) {
       res.data.data.forEach(item => {
         let nDate = new Date(item.eventTime);
         item.newDate = nDate.toString();
         item.scoreboardUrl = `/game/${item._id}`;
-        //item.scoreboardUrl = `/game/${item.eventType}/${item._id}`;
       });
     }
 
-    return dispatch({ type: LOAD_GAMES_SUCCESS, payload: res.data.data });
+    return dispatch({ type: LOAD_MY_GAMES_SUCCESS, payload: res.data.data });
   } catch (err) {
     console.log(err);
-    return dispatch({ type: LOAD_GAMES_FAIL });
+    return dispatch({ type: LOAD_MY_GAMES_FAIL });
+  }
+};
+
+export const getDefaultGames = (zip, rad) => async dispatch => {
+  try {
+    console.log("zip", zip);
+    console.log("radius", rad);
+    const res = await axios.get(`/api/v1/broadcasts/default/${zip}/${rad}`);
+    console.log("res.data.data", res.data.data);
+    if (res.data.data.length > 0) {
+      res.data.data.forEach(item => {
+        let nDate = new Date(item.eventTime);
+        item.newDate = nDate.toString();
+        item.scoreboardUrl = `/game/${item._id}`;
+      });
+    }
+
+    return dispatch({
+      type: LOAD_DEFAULT_GAMES_SUCCESS,
+      payload: res.data.data
+    });
+  } catch (err) {
+    console.log(err);
+    return dispatch({ type: LOAD_DEFAULT_GAMES_FAIL });
+  }
+};
+
+export const getFavoriteGames = team => async dispatch => {
+  try {
+    let res;
+    console.log("team", team);
+    if (team !== "No Team") {
+      res = await axios.get(`/api/v1/broadcasts/fav?team=${team}`);
+      if (res.data.data.length > 0) {
+        res.data.data.forEach(item => {
+          let nDate = new Date(item.eventTime);
+          item.newDate = nDate.toString();
+          item.scoreboardUrl = `/game/${item._id}`;
+        });
+      }
+    } else {
+      res.data.data = [];
+    }
+
+    return dispatch({
+      type: LOAD_FAVORITE_GAMES_SUCCESS,
+      payload: res.data.data
+    });
+  } catch (err) {
+    console.log(err);
+    return dispatch({ type: LOAD_FAVORITE_GAMES_FAIL });
   }
 };
 

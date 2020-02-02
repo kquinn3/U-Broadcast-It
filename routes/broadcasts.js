@@ -5,7 +5,9 @@ const {
   createBroadcast,
   updateBroadcast,
   deleteBroadcast,
-  getBroadcastsInRadius
+  getBroadcastsInRadius,
+  getFavoriteBroadcasts,
+  getBroadcastsInDefaultRadius
 } = require("../controllers/broadcasts");
 
 const Broadcast = require("../models/Broadcast");
@@ -14,13 +16,15 @@ const advancedResults = require("../middleware/advancedResults");
 const router = express.Router();
 const { protect, authorize } = require("../middleware/auth");
 
-router.route("/radius/:zipcode/:distance").get(getBroadcastsInRadius);
+router.route("/radius/:zipcode/:radius").get(getBroadcastsInRadius);
+router.route("/default/:zipcode/:radius").get(getBroadcastsInDefaultRadius);
 //.get(advancedResults(Broadcast), getBroadcastsInRadius);
 
 router
   .route("/")
   .get(advancedResults(Broadcast, "liveUpdates liveMessages"), getBroadcasts)
   .post(protect, authorize("broadcaster", "admin"), createBroadcast);
+router.route("/fav").get(getFavoriteBroadcasts);
 router
   .route("/:id")
   .get(getBroadcast)

@@ -5,6 +5,8 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_LOADED,
+  USER_PREFERENCES_SUCCESS,
+  USER_PREFERENCES_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
@@ -41,9 +43,7 @@ export const regUser = async (formData, dispatch) => {
 //Login User
 
 export const loginUser = formData => async dispatch => {
-  console.log(formData);
   const output = await logUser(formData, dispatch);
-  console.log(output);
   output.type === "LOGIN_SUCCESS" && (await loadUser(dispatch));
 };
 
@@ -80,6 +80,25 @@ export const loadUser = async dispatch => {
     return dispatch({ type: USER_LOADED, payload: res.data.data });
   } catch (err) {
     return dispatch({ type: AUTH_ERROR });
+  }
+};
+
+export const updateUserPreferences = params => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+    const res = await axios.put(
+      "/api/v1/auth/updatepreferences",
+      params,
+      config
+    );
+
+    return dispatch({ type: USER_PREFERENCES_SUCCESS, payload: res.data.data });
+  } catch (err) {
+    return dispatch({ type: USER_PREFERENCES_FAIL });
   }
 };
 

@@ -5,127 +5,138 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import removeAuthToken from "../../utils/removeAuthToken";
 
-const Navbar = ({ user: { user, isAuthenticated, isBroadcaster }, logout }) => {
+const NavbarItem = ({ link, iName, iTitle, iSpan }) => {
+  return (
+    <Fragment>
+      <li className="nav-item">
+        <Link className="nav-link" to={link}>
+          <i
+            className={iName}
+            data-toggle="tooltip"
+            data-placement="left"
+            title={iTitle}
+          ></i>
+          <span className="d-sm-none">{iSpan}</span>
+        </Link>
+      </li>
+    </Fragment>
+  );
+};
+
+const NavbarLogout = ({ click }) => {
+  return (
+    <Fragment>
+      <li className="nav-item">
+        <button className="nav-link nav-btn" onClick={click}>
+          <i
+            className="fas fa-sign-out-alt"
+            data-toggle="tooltip"
+            data-placement="left"
+            title="Logout"
+          ></i>
+          <span className="d-sm-none">Logout</span>
+        </button>
+      </li>
+    </Fragment>
+  );
+};
+
+const Navbar = ({ user: { isAuthenticated, isBroadcaster }, logout }) => {
   useEffect(() => {
     if (!isAuthenticated) removeAuthToken();
 
     // eslint-disable-next-line
   }, []);
 
-  //@todo Need to get this working and need to get the Navbar straightened out when logged in. Possibly concatenate the name or move it to middle
   const onLogout = () => {
+    console.log("Logout button is clicked");
     logout();
-    //history.push("/");
+    window.location = "/login";
   };
-
-  const broadcasterLinks = (
-    <Fragment>
-      <li className="nav-item">
-        <Link className="nav-link" to="/schedulegame">
-          <i
-            className="fas fa-calendar-alt"
-            data-toggle="tooltip"
-            data-placement="left"
-            title="Schedule a Game"
-          ></i>
-          <span className="d-sm-none">Schedule Game</span>
-        </Link>
-      </li>
-    </Fragment>
-  );
-
-  const authLinks = (
-    <Fragment>
-      <li className="nav-item">
-        <Link className="nav-link" to="/profile">
-          <i
-            className="fas fa-user"
-            data-toggle="tooltip"
-            data-placement="left"
-            title="View Dashboard"
-          ></i>{" "}
-          <span className="d-sm-none">Profile</span>
-        </Link>
-      </li>
-      <li>
-        <a className="nav-link" onClick={onLogout} href="/">
-          <i
-            className="fas fa-sign-out-alt"
-            data-toggle="tooltip"
-            data-placement="left"
-            title="Profile"
-          ></i>{" "}
-          <span className="d-sm-none">Dashboard</span>
-          {/* <span className="hide-sm">Logout</span> */}
-        </a>
-      </li>
-    </Fragment>
-  );
 
   const guestLinks = (
     <Fragment>
-      <li className="nav-item">
-        <Link className="nav-link" to="/about">
-          <i
-            className="fas fa-info-circle"
-            data-toggle="tooltip"
-            data-placement="left"
-            title="More Information"
-          ></i>{" "}
-          <span className="d-sm-none">About</span>
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/broadcast">
-          <i
-            className="fas fa-search"
-            data-toggle="tooltip"
-            data-placement="left"
-            title="Search Broadcasts"
-          ></i>{" "}
-          <span className="d-sm-none">Find Games</span>
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/demo">
-          <i
-            className="fas fa-play"
-            data-toggle="tooltip"
-            data-placement="left"
-            title="View Demo"
-          ></i>{" "}
-          <span className="d-sm-none">Demo</span>
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/register">
-          <i
-            className="fas fa-user-plus"
-            data-toggle="tooltip"
-            data-placement="left"
-            title="Register"
-          ></i>{" "}
-          <span className="d-sm-none">Register</span>
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/login">
-          <i
-            className="fas fa-sign-in-alt"
-            data-toggle="tooltip"
-            data-placement="left"
-            title="Login"
-          ></i>{" "}
-          <span className="d-sm-none">Login</span>
-        </Link>
-      </li>
+      <NavbarItem link="/" iName="fas fa-home" iTitle="Home" iSpan="Home" />
+      <NavbarItem
+        link="/about"
+        iName="fas fa-info-circle"
+        iTitle="More Information"
+        iSpan="About"
+      />
+      <NavbarItem
+        link="/broadcast"
+        iName="fas fa-search"
+        iTitle="Search Broadcasts"
+        iSpan="Find Games"
+      />
+      <NavbarItem
+        link="/demo"
+        iName="fas fa-play"
+        iTitle="View Demo"
+        iSpan="Demo"
+      />
+      <NavbarItem
+        link="/register"
+        iName="fas fa-user-plus"
+        iTitle="Register"
+        iSpan="Register"
+      />
+      <NavbarItem
+        link="/login"
+        iName="fas fa-sign-in-alt"
+        iTitle="Login"
+        iSpan="Login"
+      />
     </Fragment>
   );
+
+  const userLinks = (
+    <Fragment>
+      <NavbarItem
+        link="/"
+        iName="fas fa-tachometer-alt"
+        iTitle="Dashboard"
+        iSpan="Dashboard"
+      />
+      <NavbarItem
+        link="/broadcast"
+        iName="fas fa-search"
+        iTitle="Search Broadcasts"
+        iSpan="Find Games"
+      />
+      <NavbarLogout click={onLogout} />
+    </Fragment>
+  );
+
+  const broadcasterLinks = (
+    <Fragment>
+      <NavbarItem
+        link="/"
+        iName="fas fa-tachometer-alt"
+        iTitle="Dashboard"
+        iSpan="Dashboard"
+      />
+      <NavbarItem
+        link="/broadcast"
+        iName="fas fa-search"
+        iTitle="Search Broadcasts"
+        iSpan="Find Games"
+      />
+      <NavbarItem
+        link="/schedulegame"
+        iName="fas fa-calendar-alt"
+        iTitle="Schedule Game"
+        iSpan="Schedule Game"
+      />
+      <NavbarLogout click={onLogout} />
+    </Fragment>
+  );
+
   return (
     <Fragment>
       <nav className="navbar fixed-top navbar-expand-sm navbar-dark bg-primary mb-3">
-        {/* <nav className="navbar navbar-expand-sm bg-primary navbar-white"> */}
         <div className="container">
+          {/* u-Broadcast it title */}
           <h1 className="navbar-brand">
             <i className="fas fa-microphone"></i>{" "}
             <span className="text-dark f-xl font-weight-bold">U</span> BROADCAST
@@ -140,19 +151,11 @@ const Navbar = ({ user: { user, isAuthenticated, isBroadcaster }, logout }) => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to="/">
-                  <i
-                    className="fas fa-home"
-                    data-toggle="tooltip"
-                    data-placement="left"
-                    title="Home"
-                  ></i>{" "}
-                  <span className="d-sm-none">Home</span>
-                </Link>
-              </li>
-              {isBroadcaster && broadcasterLinks}
-              {isAuthenticated ? authLinks : guestLinks}
+              {isAuthenticated
+                ? isBroadcaster
+                  ? broadcasterLinks
+                  : userLinks
+                : guestLinks}
             </ul>
           </div>
         </div>

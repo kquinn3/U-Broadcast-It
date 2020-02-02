@@ -89,19 +89,26 @@ exports.deleteBroadcast = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Get broadcasts within a radius
-// @route   GET /api/v1/broadcasts/:radius/:distance
+// @route   GET /api/v1/broadcasts/:zipcode/:radius
 // @access  Private
 exports.getBroadcastsInRadius = asyncHandler(async (req, res, next) => {
   let team = {};
   let sport = {};
-  //Set up sport and team filters
-  if (req.query.sport !== "all") sport.sport = req.query.sport;
-  if (req.query.team !== undefined && req.query.team !== "")
-    team = {
-      $or: [{ "name.team1": req.query.team }, { "name.team2": req.query.team }]
-    };
 
-  const { zipcode, distance } = req.params;
+  console.log("req.query", typeof req.query, req.query);
+  //Set up sport and team filters
+  if (req.query !== "") {
+    if (req.query.sport !== "all") sport.sport = req.query.sport;
+    if (req.query.team !== undefined && req.query.team !== "")
+      team = {
+        $or: [
+          { "name.team1": req.query.team },
+          { "name.team2": req.query.team }
+        ]
+      };
+  }
+  const { zipcode, radius } = req.params;
+  console.log("zipcode", zipcode);
 
   //Get lat/lng from geocoder
   const loc = await geocoder.geocode(zipcode);
@@ -112,16 +119,68 @@ exports.getBroadcastsInRadius = asyncHandler(async (req, res, next) => {
   //Divide distance by radius of Earth
   //Earth Radius=3,963 miles / 6378 km
   const location = {
-    location: { $geoWithin: { $centerSphere: [[lng, lat], distance] } }
+    location: { $geoWithin: { $centerSphere: [[lng, lat], radius] } }
   };
 
   const query = Object.assign({}, location, sport, team);
   console.log("query", query);
   const broadcasts = await Broadcast.find(query);
+  console.log("Broadcasts", broadcasts.length);
 
   res.status(200).json({
     success: true,
     count: broadcasts.length,
     data: broadcasts
   });
+});
+
+// @desc    Get broadcasts within a radius
+// @route   GET /api/v1/broadcasts/:zipcode/:radius
+// @access  Private
+exports.getBroadcastsInDefaultRadius = asyncHandler(async (req, res, next) => {
+  const { zipcode, radius } = req.params;
+
+  //Get lat/lng from geocoder
+  const loc = await geocoder.geocode(zipcode);
+  const lat = loc[0].latitude;
+  const lng = loc[0].longitude;
+
+  //Calc radius using radians
+  //Divide distance by radius of Earth
+  //Earth Radius=3,963 miles / 6378 km
+  const location = {
+    location: { $geoWithin: { $centerSphere: [[lng, lat], radius] } }
+  };
+
+  const broadcasts = await Broadcast.find(location);
+
+  res.status(200).json({
+    success: true,
+    count: broadcasts.length,
+    data: broadcasts
+  });
+});
+
+// @desc    Get Favorite Broadcasts
+// @route   GET /api/v1/broadcasts/fav
+// @access  Private
+exports.getFavoriteBroadcasts = asyncHandler(async (req, res, next) => {
+  //Set up team filter
+  if (req.query.team !== undefined && req.query.team !== "") {
+    const team = {
+      $or: [{ "name.team1": req.query.team }, { "name.team2": req.query.team }]
+    };
+    const broadcasts = await Broadcast.find(team);
+    res.status(200).json({
+      success: true,
+      count: broadcasts.length,
+      data: broadcasts
+    });
+  } else {
+    res.status(200).json({
+      success: true,
+      count: 0,
+      data: "No broadcasts"
+    });
+  }
 });

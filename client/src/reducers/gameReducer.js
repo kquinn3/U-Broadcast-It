@@ -21,7 +21,13 @@ import {
   SCHEDULE_FAIL,
   SCHEDULE_CLEAR,
   LOAD_GAMES_SUCCESS,
-  LOAD_GAMES_FAIL
+  LOAD_GAMES_FAIL,
+  LOAD_MY_GAMES_SUCCESS,
+  LOAD_MY_GAMES_FAIL,
+  LOAD_FAVORITE_GAMES_SUCCESS,
+  LOAD_FAVORITE_GAMES_FAIL,
+  LOAD_DEFAULT_GAMES_SUCCESS,
+  LOAD_DEFAULT_GAMES_FAIL
 } from "../actions/types";
 
 const initialState = {
@@ -41,7 +47,11 @@ const initialState = {
 
   //Scheduling state
   isGameScheduled: false,
-  gamesScheduled: null,
+  gamesScheduled: [],
+  gamesMyScheduled: [],
+  gamesDefaultScheduled: [],
+  gamesFavoriteScheduled: [],
+
   //Error
   error: null,
 
@@ -164,6 +174,24 @@ export default (state = initialState, action) => {
         ...state,
         gamesScheduled: action.payload
       };
+    case LOAD_MY_GAMES_SUCCESS:
+      return {
+        ...state,
+        gamesMyScheduled: action.payload
+      };
+    case LOAD_DEFAULT_GAMES_SUCCESS:
+      return {
+        ...state,
+        gamesDefaultScheduled: action.payload
+      };
+    case LOAD_FAVORITE_GAMES_SUCCESS:
+      return {
+        ...state,
+        gamesFavoriteScheduled: action.payload
+      };
+    case LOAD_DEFAULT_GAMES_FAIL:
+    case LOAD_MY_GAMES_FAIL:
+    case LOAD_FAVORITE_GAMES_FAIL:
     case LOAD_GAMES_FAIL:
       return {
         ...state,

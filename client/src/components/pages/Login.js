@@ -40,7 +40,7 @@ const Login = ({
 
   //Clear state
   const clearState = () => {
-    console.log("It is in clear state");
+    //console.log("It is in clear state");
     setUserIN({
       email: "",
       password: ""
@@ -51,7 +51,7 @@ const Login = ({
     e.preventDefault();
     // Uncomment for testing to speed it up
     // const userItem = {
-    //   email: "test@gmail.com",
+    //   email: "broadcaster@gmail.com",
     //   password: "111111"
     // };
 

@@ -26,6 +26,22 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
     select: false
   },
+
+  team: {
+    type: String,
+    default: "No Team"
+  },
+
+  zipcode: {
+    type: String,
+    favoritematch: [/^[0-9]{5}$/],
+    default: "11111"
+  },
+  radius: {
+    type: Number,
+    default: 25
+  },
+
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   CreatedAt: {

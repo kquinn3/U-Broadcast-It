@@ -289,12 +289,12 @@ td {
   0% {
     opacity: 0;
   }
-  50% {
+  85% {
     opacity: 0;
   }
-  75% {
-    opacity: 0.4;
-  }
+  /* 90% {
+    opacity: 0.3;
+  } */
   100% {
     opacity: 1;
   }
@@ -644,6 +644,11 @@ td {
 
 .btn-temp:hover {
   opacity: 1;
+}
+
+.nav-btn {
+  background-color: rgb(0, 123, 255);
+  border: 0;
 }
 /* The above are used for forms */
 

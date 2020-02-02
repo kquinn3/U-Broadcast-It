@@ -73,6 +73,24 @@ exports.updateDetails = asyncHandler(async (req, res, next) => {
   res.status(200).json({ success: true, data: user });
 });
 
+// @desc    Update user details
+// @route   PUT /api/v1/auth/updatedetails
+// @access  Private
+exports.updatePreferences = asyncHandler(async (req, res, next) => {
+  let fieldsToUpdate = {};
+  if (req.body.radius !== undefined) fieldsToUpdate.radius = req.body.radius;
+  if (req.body.zipcode !== undefined) fieldsToUpdate.zipcode = req.body.zipcode;
+  if (req.body.team !== undefined) fieldsToUpdate.team = req.body.team;
+
+  console.log("fieldsToUpdate", fieldsToUpdate);
+  const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
+    new: true,
+    runValidators: true
+  });
+  console.log("user", user);
+  res.status(200).json({ success: true, data: user });
+});
+
 // @desc    Update password
 // @route   PUT /api/v1/auth/updatepassword
 // @access  Private
