@@ -21,10 +21,9 @@ p {
   padding: 0;
 }
 
-th,
-tr,
-td {
-  padding: 3px !important;
+.table th,
+.table td {
+  padding: 0.75rem 0.25rem;
 }
 
 .f-xs-lg,
@@ -674,7 +673,6 @@ td {
     font-size: 18px;
   }
 
-  .f-xs-lg,
   .f-lg {
     font-size: 20px;
   }
@@ -725,11 +723,11 @@ td {
   .w-max {
     max-width: 400px;
   }
-  th,
+  /* th,
   tr,
   td {
     padding: 5px 12px !important;
-  }
+  } */
 }
 @media (min-width: 992px) {
   .f-xl {

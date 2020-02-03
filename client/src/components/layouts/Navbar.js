@@ -8,7 +8,7 @@ import removeAuthToken from "../../utils/removeAuthToken";
 const NavbarItem = ({ link, iName, iTitle, iSpan }) => {
   return (
     <Fragment>
-      <li className="nav-item">
+      <li className="nav-item" data-toggle="collapse" data-target="#navbarNav">
         <Link className="nav-link" to={link}>
           <i
             className={iName}
@@ -16,7 +16,7 @@ const NavbarItem = ({ link, iName, iTitle, iSpan }) => {
             data-placement="left"
             title={iTitle}
           ></i>
-          <span className="d-sm-none">{iSpan}</span>
+          <span className="d-sm-none ml-2">{iSpan}</span>
         </Link>
       </li>
     </Fragment>
@@ -26,7 +26,7 @@ const NavbarItem = ({ link, iName, iTitle, iSpan }) => {
 const NavbarLogout = ({ click }) => {
   return (
     <Fragment>
-      <li className="nav-item">
+      <li className="nav-item" data-toggle="collapse" data-target="#navbarNav">
         <button className="nav-link nav-btn" onClick={click}>
           <i
             className="fas fa-sign-out-alt"
@@ -34,7 +34,7 @@ const NavbarLogout = ({ click }) => {
             data-placement="left"
             title="Logout"
           ></i>
-          <span className="d-sm-none">Logout</span>
+          <span className="d-sm-none ml-2">Logout</span>
         </button>
       </li>
     </Fragment>

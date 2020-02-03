@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Profile from "../../layouts/Profile";
 import FutureGames from "../../layouts/FutureGames";
+import PIC_LP from "../../../assets/img/lake_placid_10.jpeg";
 import {
   getMyGames,
   getFavoriteGames,
@@ -30,9 +31,17 @@ const HomeBroadcaster = ({
           {/* Left - Profile Column */}
           <div className="col-lg-4">
             <Profile />
-            <div className="card card-body bg-light mb-4">
-              <h1>Archived Games</h1>
-              <h2 className="text-danger text-center">To be added</h2>
+            <div className="d-none d-md-block card bg-light">
+              <img
+                className="card-img-top img-fluid"
+                src={PIC_LP}
+                alt="Lake Placid hockey scoreboard"
+              />
+              <div className="card-body text-center">
+                <h4>Lake Placid</h4>
+                <p>Youth Hockey Tournament, January 2020</p>
+                <p>Champions Franklin, Ma </p>
+              </div>
             </div>
           </div>
           {/* Right Upcoming Games Column */}

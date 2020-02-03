@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { updateUserPreferences, loadUser } from "../../actions/userActions";
 
-const Profile = ({ user: { user }, updateUserPreferences, loadUser }) => {
+const Profile = ({ user: { user }, updateUserPreferences }) => {
   const [newProfile, setNewProfile] = useState({
     newZip: "",
     zipFlag: false,
@@ -81,7 +81,12 @@ const Profile = ({ user: { user }, updateUserPreferences, loadUser }) => {
 
   const onFavTeam = e => {
     e.preventDefault();
-    if (newFavTeam !== user.team)
+    const re = /^[a-zA-Z].{3,}[a-zA-Z0-9]$/;
+    if (
+      newFavTeam !== user.team &&
+      newFavTeam.length > 4 &&
+      re.test(newFavTeam) === true
+    )
       setNewProfile({ ...newProfile, favTeamFlag: true });
     else setNewProfile({ ...newProfile, newFavTeam: "", favTeamFlag: false });
   };
@@ -89,44 +94,45 @@ const Profile = ({ user: { user }, updateUserPreferences, loadUser }) => {
   return (
     <Fragment>
       <div className="card card-body bg-light mb-4">
-        <h1 className="text-center">Profile</h1>
-        <h5>Welcome {user.name}</h5>
-        <h5>Change password</h5>
-        <h5>Role: {user.role}</h5>
-        <h5>
-          Default Zipcode:
+        <h3 className="text-center">Profile</h3>
+        <p className="my-1">{user.name}</p>
+        <p className="my-1">Change password (Not done yet)</p>
+        <p className="my-1">Role: {user.role}</p>
+        <div className="d-flex justify-content-between my-1">
+          <p>Search Zipcode</p>
           {zipFlag ? (
-            <span className="mx-1 bg-warning">{newZip} </span>
+            <p className="mx-1 bg-warning">{newZip} </p>
           ) : (
-            <span>{user.zipcode} </span>
+            <p className="mx-1">{user.zipcode} </p>
           )}
           <button data-toggle="modal" data-target="#zipModal">
-            <i className="fas fa-edit text-primary"></i>
+            <i className="mx-1 fas fa-edit text-primary"></i>
           </button>
-        </h5>
-
-        <h5>
-          Default Search Radius:
+        </div>
+        <div className="d-flex justify-content-between my-1">
+          <p>Search Radius</p>
           {radFlag ? (
-            <span className="mx-1 bg-warning">{newRad} </span>
+            <p className="mx-1 bg-warning">{newRad} </p>
           ) : (
-            <span>{user.radius} </span>
+            <p className="mx-1">{user.radius} </p>
           )}
+
           <button data-toggle="modal" data-target="#radModal">
-            <i className="fas fa-edit text-primary"></i>
+            <i className="mx-1 fas fa-edit text-primary"></i>
           </button>
-        </h5>
-        <h5>
-          Favorite Team:
+        </div>
+
+        <div className="d-flex justify-content-between my-1">
+          <p>Favorite Team</p>
           {favTeamFlag ? (
-            <span className="mx-1 bg-warning">{newFavTeam} </span>
+            <p className="mx-1 bg-warning">{newFavTeam} </p>
           ) : (
-            <span>{user.team} </span>
+            <p className="mx-1">{user.team} </p>
           )}
           <button data-toggle="modal" data-target="#favTeamModal">
-            <i className="fas fa-edit text-primary"></i>
+            <i className="mx-1 fas fa-edit text-primary"></i>
           </button>
-        </h5>
+        </div>
 
         {(radFlag || zipFlag || favTeamFlag) && (
           <Fragment>

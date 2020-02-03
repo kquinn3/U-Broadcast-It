@@ -10,15 +10,15 @@ const FutureGames = ({ type, game }) => {
   let noGames = "";
   let gameType = game.gamesScheduled;
   if (type === "my") {
-    h1Title = "Your Upcoming Broadcasts";
+    h1Title = "Your Broadcasts";
     noGames = "You do not have any scheduled broadcasts";
     gameType = game.gamesMyScheduled;
-  } else if (type == "favorite") {
-    h1Title = "Favorite Teams Upcoming Broadcasts";
+  } else if (type === "favorite") {
+    h1Title = "Favorite Teams Broadcasts";
     noGames = "There are no scheduled broacasts for your favorite teams";
     gameType = game.gamesFavoriteScheduled;
-  } else if (type == "defaults") {
-    h1Title = "Upcoming Broadcasts in Your Area";
+  } else if (type === "defaults") {
+    h1Title = "Broadcasts in Your Area";
     noGames = "There are no scheduled broacasts in this area";
     gameType = game.gamesDefaultScheduled;
   } else {
@@ -30,18 +30,26 @@ const FutureGames = ({ type, game }) => {
   return (
     <Fragment>
       <div className=" mb-5 card bg-light">
-        <h1 className="my-3 card-title text-center">{h1Title}</h1>
+        <h3 className="my-3 card-title text-center">{h1Title}</h3>
         {gameType.length > 0 ? (
-          <div className="table-responsive-sm card-body">
-            <table className="table-sm table-striped f-xs-lg">
+          <div className="table table-small table-responsive-sm">
+            <div className="text-center">
+              <span className="f-xs table-warning mr-2">Scheduled</span>
+              <span className="f-xs table-success mr-2">In Progress</span>
+              <span className="f-xs table-danger mr-2">Game Over</span>
+            </div>
+            <table className="table table-striped f-xs">
               <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th className="d-none d-md-block">Sport</th>
-                  <th>Visitor</th>
-                  <th>Home</th>
-                  <th>View</th>
+                <tr className="d-flex">
+                  <th className="col-2">Date</th>
+                  <th className="col-2 col-md-1">Time</th>
+                  <th className="d-none d-md-block col-md-2">Sport</th>
+                  {/* <th className="col-2">Sport</th> */}
+                  <th className="col d-md-none text-center">Visitor</th>
+                  <th className="col d-md-none text-center">Home</th>
+                  <th className="col d-none d-md-block">Visitor</th>
+                  <th className="col d-none d-md-block">Home</th>
+                  <th className="col-2 col-md-1">View</th>
                 </tr>
               </thead>
               <tbody>
