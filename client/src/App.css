@@ -77,9 +77,15 @@ p {
 .h-50 {
   height: 50%;
 }
+.h-about-pic {
+  height: 160px;
+}
 
 .w-max {
   max-width: 300px;
+}
+.w-max-about {
+  max-width: 400px;
 }
 .y-1000 {
   height: 1000px;
@@ -125,6 +131,14 @@ p {
 .disable-pointer {
   pointer-events: none;
   opacity: 0.2;
+}
+
+/* About Page */
+.about img {
+  height: 300px;
+}
+.about .prog-bar {
+  width: 100%;
 }
 
 /* Landing page  */
@@ -723,6 +737,9 @@ p {
   .w-max {
     max-width: 400px;
   }
+  .w-max-about {
+    max-width: 500px;
+  }
   /* th,
   tr,
   td {
@@ -737,5 +754,8 @@ p {
 @media (min-width: 1200px) {
   .f-xl {
     font-size: 28px;
+  }
+  .h-about-pic {
+    height: 195px;
   }
 }
