@@ -16,6 +16,7 @@ const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
 
 //Load env vars
+
 //dotenv.config({ path: "./config/config.env" });
 
 //Connect to database
@@ -92,6 +93,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
   );
 }
+console.log(process.env.NODE_ENV);
 
 const PORT = process.env.PORT || 5000;
 

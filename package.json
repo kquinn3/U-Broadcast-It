@@ -4,7 +4,8 @@
   "description": "A live score tracker for sporting events",
   "main": "server.js",
   "scripts": {
-    "start": "NODE_ENV=production node server",
+    "start": "ENV NODE_ENV=production node server",
+    "test": "ENV NODE_ENV=production npm run server",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "clientinstall": "npm install --prefix client",
