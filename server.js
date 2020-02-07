@@ -1,12 +1,17 @@
 const express = require("express");
 const session = require("express-session");
 const socket = require("socket.io");
-const cors = require("cors");
 //const dotenv = require("dotenv");
 const morgan = require("morgan");
 const colors = require("colors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
+const xss = require("xss-clean");
+const rateLimit = require("express-rate-limit");
+const hpp = require("hpp");
+const cors = require("cors");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
 
@@ -38,6 +43,28 @@ app.use(cookieParser());
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
+// Sanitize data
+app.use(mongoSanitize());
+
+// Set security headers
+app.use(helmet());
+
+// Prevent cross site scripting attacks
+app.use(xss());
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMS: 60 * 1000, // 1 minute
+  max: 60
+});
+app.use(limiter);
+
+// Enable CORS
+//app.use(cors());
+
+//Prevent http param polution
+app.use(hpp());
 
 // Express session midleware
 app.use(

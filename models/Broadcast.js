@@ -72,16 +72,14 @@ const BroadcastSchema = new mongoose.Schema(
 
 //Create bootcamp slug from the names
 BroadcastSchema.pre("save", function(next) {
-  console.log("Slugify ran", this.name.team1);
   this.slug = slugify(`${this.name.team1}_${this.name.team2}`, { lower: true });
   next();
 });
 
 //Geocode & create location field
 BroadcastSchema.pre("save", async function(next) {
-  //console.log(this.address);
   const loc = await geocoder.geocode(this.address);
-  //console.log(loc);
+
   this.location = {
     type: "Point",
     coordinates: [loc[0].longitude, loc[0].latitude],
@@ -115,7 +113,6 @@ BroadcastSchema.virtual("liveMessages", {
 
 //Cascade delete liveUpdates when a broadcast is deleted
 BroadcastSchema.pre("remove", async function(next) {
-  //  console.log(`LiveUpdates being remove from ${this._id}`);
   await this.model("LiveUpdate").deleteMany({ broadcast: this._id });
   await this.model("LiveMessage").deleteMany({ broadcast: this._id });
   next();

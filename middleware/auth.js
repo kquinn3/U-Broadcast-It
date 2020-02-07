@@ -26,7 +26,6 @@ exports.protect = asyncHandler(async (req, res, next) => {
   try {
     //Verify token
     const decoded = jwt.verify(token, config.JWT_SECRET);
-    console.log(decoded);
 
     req.user = await User.findById(decoded.id);
     next();
@@ -38,7 +37,6 @@ exports.protect = asyncHandler(async (req, res, next) => {
 //Grant access to specific roles
 exports.authorize = (...roles) => {
   return (req, res, next) => {
-    console.log(req.user.role);
     if (!roles.includes(req.user.role)) {
       return next(
         new errorResponse(

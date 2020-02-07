@@ -95,7 +95,6 @@ exports.getBroadcastsInRadius = asyncHandler(async (req, res, next) => {
   let team = {};
   let sport = {};
 
-  console.log("req.query", typeof req.query, req.query);
   //Set up sport and team filters
   if (req.query !== "") {
     if (req.query.sport !== "all") sport.sport = req.query.sport;
@@ -124,9 +123,7 @@ exports.getBroadcastsInRadius = asyncHandler(async (req, res, next) => {
   };
 
   const query = Object.assign({}, location, sport, team);
-  console.log("query", query);
   const broadcasts = await Broadcast.find(query);
-  console.log("Broadcasts", broadcasts.length);
 
   res.status(200).json({
     success: true,
@@ -140,16 +137,12 @@ exports.getBroadcastsInRadius = asyncHandler(async (req, res, next) => {
 // @access  Private
 exports.getBroadcastsInDefaultRadius = asyncHandler(async (req, res, next) => {
   const { zipcode, radius } = req.params;
-  console.log("zipcode", zipcode);
-  console.log("radius", radius);
 
   //Get lat/lng from geocoder
   const loc = await geocoder.geocode(zipcode);
   const lat = loc[0].latitude;
   const lng = loc[0].longitude;
 
-  console.log("lat", lat);
-  console.log("lng", lng);
   //Calc radius using radians
   //Divide distance by radius of Earth
   //Earth Radius=3,963 miles / 6378 km
@@ -158,8 +151,6 @@ exports.getBroadcastsInDefaultRadius = asyncHandler(async (req, res, next) => {
   const location = {
     location: { $geoWithin: { $centerSphere: [[lng, lat], rad] } }
   };
-
-  console.log("location", location);
 
   const broadcasts = await Broadcast.find(location);
 

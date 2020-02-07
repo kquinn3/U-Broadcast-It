@@ -10,7 +10,7 @@ const config = require("config");
 // @access  Public
 exports.register = asyncHandler(async (req, res, next) => {
   const { name, email, password, role } = req.body;
-  //console.log(req.body);
+
   //Create user
   const user = await User.create({
     name,
@@ -26,7 +26,6 @@ exports.register = asyncHandler(async (req, res, next) => {
 // @route   POST /api/v1/auth/register
 // @access  Public
 exports.login = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
   const { email, password } = req.body;
 
   //Validate email and password
@@ -82,12 +81,11 @@ exports.updatePreferences = asyncHandler(async (req, res, next) => {
   if (req.body.zipcode !== undefined) fieldsToUpdate.zipcode = req.body.zipcode;
   if (req.body.team !== undefined) fieldsToUpdate.team = req.body.team;
 
-  console.log("fieldsToUpdate", fieldsToUpdate);
   const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
     new: true,
     runValidators: true
   });
-  console.log("user", user);
+
   res.status(200).json({ success: true, data: user });
 });
 
@@ -134,7 +132,6 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
     });
     res.status(200).json({ success: true, data: "Email sent" });
   } catch (err) {
-    console.log(err);
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
     await user.save({ validateBeforeSave: false });
