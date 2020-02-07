@@ -70,12 +70,6 @@ const Navbar = ({ user: { isAuthenticated, isBroadcaster }, logout }) => {
         iSpan="Find Games"
       />
       <NavbarItem
-        link="/demo"
-        iName="fas fa-play"
-        iTitle="View Demo"
-        iSpan="Demo"
-      />
-      <NavbarItem
         link="/register"
         iName="fas fa-user-plus"
         iTitle="Register"
@@ -99,6 +93,12 @@ const Navbar = ({ user: { isAuthenticated, isBroadcaster }, logout }) => {
         iSpan="Dashboard"
       />
       <NavbarItem
+        link="/about"
+        iName="fas fa-info-circle"
+        iTitle="More Information"
+        iSpan="About"
+      />
+      <NavbarItem
         link="/broadcast"
         iName="fas fa-search"
         iTitle="Search Broadcasts"
@@ -115,6 +115,12 @@ const Navbar = ({ user: { isAuthenticated, isBroadcaster }, logout }) => {
         iName="fas fa-tachometer-alt"
         iTitle="Dashboard"
         iSpan="Dashboard"
+      />
+      <NavbarItem
+        link="/about"
+        iName="fas fa-info-circle"
+        iTitle="More Information"
+        iSpan="About"
       />
       <NavbarItem
         link="/broadcast"

@@ -9,7 +9,7 @@ const AboutInfoLarge = () => {
       <div className="container bg-light">
         <div className="row text-center">
           <div className="w-100">
-            <div class="jumbotron bg-light">
+            <div className="jumbotron bg-light">
               <div className="card my-3">
                 <div className="row card-body">
                   <div className="order-1 col-4 bg-light text-left">
@@ -29,7 +29,7 @@ const AboutInfoLarge = () => {
 
                   {/* Center Column */}
                   <div className="order-2 col-4">
-                    <div class="d-flex flex-column">
+                    <div className="d-flex flex-column">
                       {/* Top */}
                       <div className="h-about-pic">
                         <h5 className="bg-primary text-light text-center my-2">

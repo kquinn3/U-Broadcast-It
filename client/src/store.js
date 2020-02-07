@@ -5,20 +5,29 @@ import rootReducer from "./reducers";
 
 //const initialState = {};
 
+// Set storage to either local or session. Local keeps it stored even after user logs out. Not good
+//const storage = "local";
+const storage = "session";
+
 const middleware = [thunk];
 
-const saveToLocalStorage = state => {
+const saveToStorage = (state, storage) => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem("ubroadcastit", serializedState);
+    storage === "local"
+      ? localStorage.setItem("ubroadcastit", serializedState)
+      : sessionStorage.setItem("ubroadcastit", serializedState);
   } catch (err) {
     console.log("err", err);
   }
 };
 
-const loadFromLocalStorage = () => {
+const loadFromStorage = storage => {
   try {
-    const serializedState = localStorage.getItem("ubroadcastit");
+    const serializedState =
+      storage === "local"
+        ? localStorage.getItem("ubroadcastit")
+        : sessionStorage.getItem("ubroadcastit");
     if (serializedState === null) return undefined;
     return JSON.parse(serializedState);
   } catch (err) {
@@ -27,7 +36,8 @@ const loadFromLocalStorage = () => {
   }
 };
 
-const persistedState = loadFromLocalStorage();
+//const persistedState = loadFromStorage();
+const persistedState = loadFromStorage(storage);
 
 const store = createStore(
   rootReducer,
@@ -36,6 +46,6 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
-store.subscribe(() => saveToLocalStorage(store.getState()));
+store.subscribe(() => saveToStorage(store.getState(), storage));
 
 export default store;

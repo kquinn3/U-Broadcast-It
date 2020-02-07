@@ -9,7 +9,7 @@ const AboutInfoSmall = () => {
       <div className="container bg-light w-max-about">
         <div className="row text-center">
           <div className="w-100">
-            <div class="jumbotron bg-light">
+            <div className="jumbotron bg-light">
               <div className="card my-3">
                 <div className="row">
                   <div className="w-100">
