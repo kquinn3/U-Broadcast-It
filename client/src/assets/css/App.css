@@ -1,0 +1,304 @@
+/* General */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+  color: black;
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; */
+}
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem 0.25rem;
+}
+
+.f-xs-lg,
+.f-xs {
+  font-size: 12px;
+}
+
+.f-sm {
+  font-size: 14px;
+}
+
+.f-md {
+  font-size: 16px;
+}
+
+.f-lg {
+  font-size: 18px;
+}
+
+.f-xl {
+  font-size: 20px;
+}
+.w-80p {
+  width: 80px;
+}
+
+.w-20 {
+  width: 20%;
+}
+.w-80 {
+  width: 80%;
+}
+
+.w-90 {
+  width: 90%;
+}
+.w-90MM,
+.w-90M {
+  width: 90%;
+  max-width: 300px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-100M {
+  width: 100%;
+  max-width: 300px;
+}
+.h-50 {
+  height: 50vw;
+  /* height: 50vw; */
+}
+.h-about-pic {
+  height: 160px;
+}
+
+.w-max {
+  max-width: 300px;
+}
+.w-max-about {
+  max-width: 400px;
+}
+.y-1000 {
+  height: 1000px;
+}
+
+.margin-x-0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+.margin-x-1 {
+  margin-left: 4;
+  margin-right: 4;
+}
+.margin-x-2 {
+  margin-left: 8;
+  margin-right: 8;
+}
+.margin-auto-1 {
+  display: inline-block;
+  margin: 4px auto;
+}
+.margin-auto-2 {
+  display: inline-block;
+  margin: 8px auto;
+}
+.margin-auto-3 {
+  display: inline-block;
+  margin: 12px auto;
+}
+.margin-auto-3b {
+  display: inline-block;
+  margin-top: 0px;
+  margin-bottom: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  /* margin: 12px auto 0px auto; */
+}
+.margin-auto-4 {
+  display: inline-block;
+  margin: 16px auto;
+}
+
+.disable-pointer {
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+/* About Page */
+.about img {
+  height: 300px;
+}
+.about .prog-bar {
+  width: 100%;
+}
+
+/* Navbar */
+.nav-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.nav-offset {
+  height: 62px;
+}
+
+/* Date Picker */
+.react-datepicker__input-container {
+  width: inherit;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+/* The following are used for the forms. They were taken from w3schools */
+
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Style the form icons */
+.icon {
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+/* Style the input fields */
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid dodgerblue;
+}
+
+/* Set a style for the submit button */
+.btn-temp {
+  background-color: dodgerblue;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn-temp:hover {
+  opacity: 1;
+}
+
+.nav-btn {
+  background-color: rgb(0, 123, 255);
+  border: 0;
+}
+/* The above are used for forms */
+
+@media (min-width: 576px) {
+  .hockey-scoreboard {
+    top: 76px;
+  }
+  .hockey-mobile-buttons {
+    top: 230px;
+  }
+  .hockey-mobile-info {
+    top: 280px;
+  }
+  .f-xs {
+    font-size: 14px;
+  }
+
+  .f-sm {
+    font-size: 16px;
+  }
+
+  .f-md {
+    font-size: 18px;
+  }
+
+  .f-lg {
+    font-size: 20px;
+  }
+
+  .f-xl {
+    font-size: 22px;
+  }
+  .w-90M {
+    max-width: 400px;
+  }
+  .w-90MM {
+    max-width: 600px;
+  }
+  .w-100M {
+    max-width: 400px;
+  }
+  .w-max {
+    max-width: 400px;
+  }
+  .w-90max {
+    max-width: 360px;
+  }
+}
+@media (min-width: 768px) {
+  /* .f-xs {
+    font-size: 16px;
+  }
+
+  .f-sm {
+    font-size: 18px;
+  }
+
+  .f-md {
+    font-size: 20px;
+  }
+
+  .f-lg {
+    font-size: 22px;
+  }
+*/
+  .f-xl {
+    font-size: 24px;
+  }
+  .w-100M {
+    width: 100%;
+    max-width: 500px;
+  }
+  .w-max {
+    max-width: 400px;
+  }
+  .w-max-about {
+    max-width: 500px;
+  }
+  /* th,
+  tr,
+  td {
+    padding: 5px 12px !important;
+  } */
+}
+@media (min-width: 992px) {
+  .f-xl {
+    font-size: 26px;
+  }
+}
+@media (min-width: 1200px) {
+  .f-xl {
+    font-size: 28px;
+  }
+  .h-about-pic {
+    height: 195px;
+  }
+}

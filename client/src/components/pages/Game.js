@@ -13,6 +13,7 @@ import {
 } from "../../actions/gameActions";
 
 import Hockey from "../layouts/games/hockey/Hockey.js";
+import "../../assets/css/Game.css";
 
 const Game = ({
   match: {

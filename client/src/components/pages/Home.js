@@ -1,23 +1,13 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import HomeGuest from "./HomeGuest";
-import HomeUser from "./HomeUser";
-import HomeBroadcaster from "./HomeBroadcaster";
+import HomeGuest from "../layouts/home/HomeGuest";
+import HomeAuthorized from "../layouts/home/HomeAuthorized";
 import PropTypes from "prop-types";
+import "../../assets/css/Landing.css";
 
 const Home = ({ user: { user, isAuthenticated } }) => {
   return (
-    <Fragment>
-      {isAuthenticated ? (
-        user.role === "user" ? (
-          <HomeUser />
-        ) : (
-          <HomeBroadcaster />
-        )
-      ) : (
-        <HomeGuest />
-      )}
-    </Fragment>
+    <Fragment>{isAuthenticated ? <HomeAuthorized /> : <HomeGuest />}</Fragment>
   );
 };
 

@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Profile from "../../layouts/Profile";
-import FutureGames from "../../layouts/FutureGames";
-import PIC_LP from "../../../assets/img/lake_placid_10.jpeg";
+import Profile from "../profile/Profile";
+import FutureGames from "../FutureGames";
+import FragmentLakePlacid from "../utils/FragmentLakePlacid";
+
 import {
   getMyGames,
   getFavoriteGames,
@@ -12,8 +12,14 @@ import { connect } from "react-redux";
 
 import PropTypes from "prop-types";
 
-const HomeUser = ({ user, getFavoriteGames, getDefaultGames }) => {
+const HomeAuthorized = ({
+  user,
+  getMyGames,
+  getFavoriteGames,
+  getDefaultGames
+}) => {
   useEffect(() => {
+    user.user.role === "broadcaster" && getMyGames(user.user._id);
     getDefaultGames(user.user.zipcode, user.user.radius);
     getFavoriteGames(user.user.team);
   }, [user]);
@@ -25,21 +31,11 @@ const HomeUser = ({ user, getFavoriteGames, getDefaultGames }) => {
           {/* Left - Profile Column */}
           <div className="col-lg-4">
             <Profile />
-            <div className="d-none d-md-block card bg-light">
-              <img
-                className="card-img-top img-fluid"
-                src={PIC_LP}
-                alt="Lake Placid hockey scoreboard"
-              />
-              <div className="card-body text-center">
-                <h4>Lake Placid</h4>
-                <p>Youth Hockey Tournament, January 2020</p>
-                <p>Champions Franklin, Ma </p>
-              </div>
-            </div>
+            <FragmentLakePlacid reg="dashboard" />
           </div>
           {/* Right Upcoming Games Column */}
           <div className="col-lg-8">
+            {user.user.role === "broadcaster" && <FutureGames type="my" />}
             <FutureGames type="favorite" />
             <FutureGames type="defaults" />
           </div>
@@ -49,7 +45,7 @@ const HomeUser = ({ user, getFavoriteGames, getDefaultGames }) => {
   );
 };
 
-HomeUser.propTypes = {
+HomeAuthorized.propTypes = {
   user: PropTypes.object.isRequired
 };
 
@@ -61,4 +57,4 @@ export default connect(mapStateToProps, {
   getMyGames,
   getFavoriteGames,
   getDefaultGames
-})(HomeUser);
+})(HomeAuthorized);

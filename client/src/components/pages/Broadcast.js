@@ -2,7 +2,8 @@ import React, { Fragment, useState } from "react";
 import { getMyFilteredGames } from "../../actions/gameActions";
 import { connect } from "react-redux";
 import FutureGames from "../layouts/FutureGames";
-import PIC_LP from "../../assets/img/lake_placid_1.jpeg";
+import SearchWithFilter from "../layouts/searches/SearchWithFilter";
+import FragmentLakePlacid from "../layouts/utils/FragmentLakePlacid";
 
 const Broadcast = ({ getMyFilteredGames }) => {
   const [search, setSearch] = useState({
@@ -23,10 +24,6 @@ const Broadcast = ({ getMyFilteredGames }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log("miles", miles);
-    console.log("zipcode", zipcode);
-    console.log("team", team);
-    console.log("sport", sport);
     const filtered = {
       miles,
       zipcode,
@@ -43,84 +40,15 @@ const Broadcast = ({ getMyFilteredGames }) => {
           <div className="row my-3">
             {/* Sidebar */}
             <div className="col-lg-4">
-              <div className="card card-body bg-light mb-4">
-                <h4 className="mb-3">
-                  <i className="fas fa-search mr-3"></i>By Location
-                </h4>
-                <form onSubmit={onSubmit}>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="miles"
-                          value={miles}
-                          required
-                          placeholder="Miles From"
-                          onChange={onChange}
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="zipcode"
-                          value={zipcode}
-                          placeholder="Enter Zipcode"
-                          required
-                          onChange={onChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <h4 className="mb-3">
-                    <i className="fas fa-filter mr-3"></i>Filter
-                  </h4>
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="team"
-                      value={team}
-                      placeholder="team name"
-                      onChange={onChange}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <select
-                      name="sport"
-                      className="mb-2 form-control"
-                      onChange={onSport}
-                    >
-                      <option value="all">All Sports</option>
-                      <option value="hockey">Hockey</option>
-                      <option value="basketball">Basketball</option>
-                    </select>
-                  </div>
-
-                  <input
-                    type="submit"
-                    value="Find Games"
-                    className="btn btn-primary btn-block"
-                  />
-                </form>
-              </div>
-
-              <div className="d-none d-md-block card bg-light">
-                <img
-                  className="card-img-top img-fluid"
-                  src={PIC_LP}
-                  alt="Lake Placid hockey scoreboard"
-                />
-                <div className="card-body text-center">
-                  <h4>Lake Placid</h4>
-                  <p>Site of the 1980 US Gold Medal </p>
-                </div>
-              </div>
+              <SearchWithFilter
+                onSubmit={onSubmit}
+                onChange={onChange}
+                onSport={onSport}
+                miles={miles}
+                zipcode={zipcode}
+                team={team}
+              />
+              <FragmentLakePlacid reg="search" />
             </div>
             <div className="col-lg-8">
               <FutureGames />
@@ -131,10 +59,6 @@ const Broadcast = ({ getMyFilteredGames }) => {
     </Fragment>
   );
 };
-
-// Broadcast.propTypes = {
-//   game: PropTypes.object.isRequired
-// };
 
 const mapStateToProps = state => ({
   game: state.game

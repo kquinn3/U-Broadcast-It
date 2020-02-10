@@ -1,21 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Home from "./components/pages/home/Home";
-import About from "./components/pages/about/About";
+import Home from "./components/pages/Home";
+import About from "./components/pages/About";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
 import ScheduleGame from "./components/pages/ScheduleGame";
 import NotFound from "./components/pages/NotFound";
-import Navbar from "./components/layouts/Navbar";
-import Alerts from "./components/layouts/Alerts";
+import Navbar from "./components/layouts/utils/Navbar";
+import Alerts from "./components/layouts/utils/Alerts";
 import Game from "./components/pages/Game";
-import Demo from "./components/pages/Demo";
 import Broadcast from "./components/pages/Broadcast";
 
 import { Provider } from "react-redux";
 import store from "./store";
-import "./App.css";
+import "./assets/css/App.css";
 
 const App = () => {
   return (
@@ -32,7 +31,6 @@ const App = () => {
           <Route exact path="/broadcast" component={Broadcast} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/schedulegame" component={ScheduleGame} />
-          <Route exact path="/demo" component={Demo} />
           <Route exact path="/game/:id" component={Game} />
           <Route exact path="/game/:id" component={Game} />
           <Route component={NotFound} />

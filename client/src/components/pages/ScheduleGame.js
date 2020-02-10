@@ -85,8 +85,7 @@ const ScheduleGame = ({
             <div className="card bg-white p-4 mb-4">
               <div className="card-body">
                 <h1 className="text-center mb-3">
-                  <i className="fas fa-calendar-alt"></i>
-                  Schedule a Game
+                  <i className="fas fa-calendar-alt"></i> Schedule a Game
                 </h1>
                 <p>
                   Schedule a future game. Once done you will be provided a link
@@ -160,8 +159,8 @@ const ScheduleGame = ({
                   </div>
 
                   <div className="card card-body mb-3">
-                    <h5>Enter the sport</h5>
-                    <div className="form-check">
+                    <h5 className="mb-2">Enter the sport</h5>
+                    <div className="form-check mb-2">
                       <input
                         className="form-check-input"
                         type="radio"
@@ -172,56 +171,64 @@ const ScheduleGame = ({
                       />
                       <label className="form-check-label">Hockey</label>
                     </div>
-                    <div className="form-check">
+                    <div className="form-check mb-2">
                       <input
                         className="form-check-input"
                         type="radio"
                         name="sport"
                         value="football"
                         onChange={onChange}
+                        disabled
                       />
                       <label className="form-check-label">Football</label>
                     </div>
-                    <div className="form-check">
+                    <div className="form-check mb-2">
                       <input
                         className="form-check-input"
                         type="radio"
                         name="sport"
                         value="baseball"
                         onChange={onChange}
+                        disabled
                       />
                       <label className="form-check-label">Baseball</label>
                     </div>
-                    <div className="form-check">
+                    <div className="form-check mb-2">
                       <input
                         className="form-check-input"
                         type="radio"
                         name="sport"
                         value="basketball"
                         onChange={onChange}
+                        disabled
                       />
                       <label className="form-check-label">Basketball</label>
                     </div>
-                    <div className="form-check">
+                    <div className="form-check mb-2">
                       <input
                         className="form-check-input"
                         type="radio"
                         name="sport"
                         value="soccer"
                         onChange={onChange}
+                        disabled
                       />
                       <label className="form-check-label">Soccer</label>
                     </div>
-                    <div className="form-check">
+                    <div className="form-check mb-2">
                       <input
                         className="form-check-input"
                         type="radio"
                         name="sport"
                         value="lacrosse"
                         onChange={onChange}
+                        disabled
                       />
                       <label className="form-check-label">Lacrosse</label>
                     </div>
+                    <p className="text-danger">
+                      * The only available sport is hockey
+                    </p>
                   </div>
 
                   <input

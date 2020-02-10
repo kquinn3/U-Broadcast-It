@@ -1,6 +1,5 @@
 node_modules/
 /config/default.json
-/config/production_attempt.json
 /config/config.env
 
 /client/build
