@@ -74,9 +74,16 @@ p {
   width: 100%;
   max-width: 300px;
 }
+.h-100 {
+  height: 100vw;
+  /* height: 50vw; */
+}
 .h-50 {
   height: 50vw;
   /* height: 50vw; */
+}
+.h-40 {
+  height: 40vh;
 }
 .h-about-pic {
   height: 160px;
@@ -140,6 +147,11 @@ p {
 }
 .about .prog-bar {
   width: 100%;
+}
+
+.about .square-button {
+  margin: 0;
+  padding: 0;
 }
 
 /* Navbar */

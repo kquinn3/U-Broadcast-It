@@ -32,7 +32,8 @@ export default function HomeGuest() {
 }
 
 const LandingQuarter = ({ region, text1, text2 }) => {
-  const outerDiv = `${region} align-items-stretch justify-content-end`;
+  const outerDiv = `${region} d-flex flex-column justify-content-center`;
+  // const outerDiv = `${region} align-items-stretch justify-content-end`;
   return (
     <Fragment>
       <div className={outerDiv}>
@@ -54,9 +55,9 @@ const ButtonGroup = ({ btnSize, btnType }) => {
   if (btnType === "about") {
     iClass = "fas fa-info-circle";
     iText = " Learn More";
-  } else if (btnType === "demo") {
-    iClass = "fas fa-play";
-    iText = " View Demo";
+  } else if (btnType === "register") {
+    iClass = "fas fa-user-plus";
+    iText = " Sign Up";
   } else {
     iClass = "fas fa-search";
     iText = " Search Games";
@@ -79,20 +80,30 @@ const LandingFinal = () => {
   return (
     <Fragment>
       <div className="landing">
-        <div className="row align-items-end h-50">
+        {/* <div className="row align-items-end h-50">
+          <div className="col">
+            <h2 className="font-weight-bold mb-5 text-primary">
+              Let's get started
+            </h2>
+            <h2 className="display-4 font-weight-bold text-primary">
+              ...and enjoy the game
+            </h2>
+          </div>
+        </div> */}
+        <div className="row align-items-center h-100">
           <div className={XSmallButtons}>
             <ButtonGroup btnSize="xs" btnType="about" />
-            <ButtonGroup btnSize="xs" btnType="demo" />
             <ButtonGroup btnSize="xs" btnType="broadcast" />
+            <ButtonGroup btnSize="xs" btnType="register" />
           </div>
           <div className={SmallButtons}>
             <ButtonGroup btnSize="sm" btnType="about" />
-            <ButtonGroup btnSize="sm" btnType="demo" />
             <ButtonGroup btnSize="sm" btnType="broadcast" />
+            <ButtonGroup btnSize="sm" btnType="register" />
           </div>
         </div>
 
-        <div className="row align-items-end h-50">
+        {/* <div className="row align-items-end h-50">
           <div className="col">
             <p className="text-light bg-primary f-xl font-weight-bold">
               Let's get started
@@ -100,8 +111,8 @@ const LandingFinal = () => {
             <p className="text-light bg-primary f-xl font-weight-bold">
               ...and enjoy the game
             </p>
-          </div>
-        </div>
+          </div> 
+        </div> */}
       </div>
     </Fragment>
   );
