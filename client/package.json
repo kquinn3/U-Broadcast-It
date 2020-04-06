@@ -19,6 +19,7 @@
     "uuid": "^3.3.3"
   },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -39,5 +40,11 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "minimist": "^1.2.5"
+  },
+  "resolutions": {
+    "minimist": "^1.2.5"
+  }
 }

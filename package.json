@@ -4,6 +4,7 @@
   "description": "A live score tracker for sporting events",
   "main": "server.js",
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "start": "NODE_ENV=production node server",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
@@ -40,6 +41,10 @@
   },
   "devDependencies": {
     "concurrently": "^5.0.0",
+    "minimist": "^1.2.5",
     "nodemon": "^2.0.1"
+  },
+  "resolutions": {
+    "minimist": "^1.2.5"
   }
 }
